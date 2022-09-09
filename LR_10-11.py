@@ -145,8 +145,9 @@ def task10_var10():
 
     N = randint(50, 1000)
     K = randint(5, 15)
-    bast_list = [set([i for i in range(randint(1, N - 1), N, randint(5, 20)) if i % 7 not in (6, 0)]) for j in range(K) if j != 0]
-    work_days = set([day for day in range(1, N ) if day % 7 not in (6, 0)])
+    bast_list = [set([i for i in range(randint(1, N - 1), N, randint(5, 20)) if i % 7 not in (6, 0)]) for j in range(K)
+                 if j != 0]
+    work_days = set([day for day in range(1, N) if day % 7 not in (6, 0)])
     print(work_days)
     print(len(work_days))
     print(bast_list)
@@ -156,12 +157,33 @@ def task10_var10():
         work_days = work_days - i
         not_or = not_or ^ i
 
-    print(work_days) # без забастовок совсем
-    print(not_or) # только с 1 забастовкой
-    print(work_days | not_or) # без забастовок или только с 1 забастовкой
-    print(len(work_days | not_or)) # ответ
+    print(work_days)  # без забастовок совсем
+    print(not_or)  # только с 1 забастовкой
+    print(work_days | not_or)  # без забастовок или только с 1 забастовкой
+    print(len(work_days | not_or))  # ответ
 
 
+def task11_var4():
+    from collections import Counter
+
+    text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+    in culpa qui officia deserunt mollit anim id est laborum."""
+
+    text2 = "some text to test algorithm for task 11 var 4 done by me and my friend in 2020 year with love love love very much thanks for all and good luck to all my friends and family and all people in the world"
+
+    myLine = text.split()  # split() без аргументов делит по пробельным символам, в том числе и по переносам строк
+    d = Counter(myLine)  # один проход с подсчетом в словаре - примерно O(n)
+    max_encounters = max(d.values())  # нахождение максимума - О(n)
+    most_common_word = min(word for word, count in d.items() if
+                           count == max_encounters)  # нахождение минимального из максимально частых слов O(n*m) (m - количество самых частых слов)
+    print(most_common_word)  # получаем слово "in"
+
+    # или получаем список через d.most_common(1) и выводим первый элемент списка
+
+    print(d) # сам список для наглядности
 
 
 if __name__ == "__main__":
@@ -175,5 +197,6 @@ if __name__ == "__main__":
     # task10_var7()
     # task10_var8()
     # task10_var9()
-    task10_var10()
+    # task10_var10()
+    task11_var4()
     pass
