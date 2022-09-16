@@ -20,7 +20,7 @@ def get_max_sum(list_of_pairs):
 def entry_16_not_end_A(list_of_pairs):
     out = 0
     out += max(list_of_pairs[0][0], list_of_pairs[0][1])
-    for i in list_of_pairs:
+    for i in list_of_pairs[1::]:
         test_out = out
         test_out += max(i[0], i[1])
         if hex(test_out)[-1] == 'a':
