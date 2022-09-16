@@ -17,22 +17,39 @@ def get_max_sum(list_of_pairs):
     return out
 
 
-def entry_16_not_end_A(list_of_pairs):
-    out = 0
-    out += max(list_of_pairs[0][0], list_of_pairs[0][1])
-    for i in list_of_pairs[1::]:
-        test_out = out
-        test_out += max(i[0], i[1])
-        if hex(test_out)[-1] == 'a':
-            out += max(i[0], i[1])
+def choose_max_in_list(list_of_pairs):
+    out = []
+    for i in list_of_pairs:
+        if i[0] > i[1]:
+            out += [i[0]]
         else:
-            out += min(i[0], i[1])
+            out += [i[1]]
     return out
+
+
+def entry_16_not_end_A(list_of_pairs):
+    # берем максимальный элемент из всех пар
+    max_16_not_end_A = choose_max_in_list(list_of_pairs)
+    # если такой список не оканчивается на a, то возвращаем его
+    if hex(sum(max_16_not_end_A))[-1] != 'a':
+        return sum(max_16_not_end_A)
+    else:
+        # иначе меняем в списке минимальный элемент и запоминаем его чтоб снова не убрать
+        while hex(sum(max_16_not_end_A))[-1] == 'a':
+            deleted = []
+            m_elem = min(max_16_not_end_A, key=lambda x: x not in deleted)
+            m_elem_index = max_16_not_end_A.index(m_elem)
+            max_16_not_end_A[m_elem_index] = list_of_pairs[m_elem_index][0] + list_of_pairs[m_elem_index][1] - m_elem
+            deleted.append(m_elem)
+        return sum(max_16_not_end_A)
 
 
 if __name__ == "__main__":
     out_a = entry_16_not_end_A(get_pair_digs("4a.txt"))
     out_b = entry_16_not_end_A(get_pair_digs("4b.txt"))
-    print(out_a, out_b)
-    print(hex(out_a), hex(out_b))
-    print(get_max_sum(get_pair_digs("4a.txt")), get_max_sum(get_pair_digs("4b.txt")))
+    print("Максимальная сумма не оканчивающаяся на а: ", hex(out_a)[2:], hex(out_b)[2:])
+    print("                                           ", out_a, out_b, "\n")
+    print("                       Максимальная сумма: ", hex(get_max_sum(get_pair_digs("4a.txt")))[2:],
+          hex(get_max_sum(get_pair_digs("4b.txt")))[2:])
+    print("                                           ", get_max_sum(get_pair_digs("4a.txt")),
+          get_max_sum(get_pair_digs("4b.txt")))
