@@ -28,6 +28,10 @@ def choose_max_in_list(list_of_pairs):
 
 
 def entry_16_not_end_A(list_of_pairs):
+    # можно сделать все невероятно проще и быстрее
+    # если последовательно получать данные
+    # но так как я уже завел списки то вот так:
+    from math import inf
     # берем максимальный элемент из всех пар
     max_16_not_end_A = choose_max_in_list(list_of_pairs)
     # если такой список не оканчивается на a, то возвращаем его
@@ -37,7 +41,8 @@ def entry_16_not_end_A(list_of_pairs):
         # иначе меняем в списке минимальный элемент и запоминаем его чтоб снова не убрать
         while hex(sum(max_16_not_end_A))[-1] == 'a':
             deleted = []
-            m_elem = min(max_16_not_end_A, key=lambda x: x not in deleted)
+
+            m_elem = min(max_16_not_end_A,  key=lambda x: x if x not in deleted else -inf)
             m_elem_index = max_16_not_end_A.index(m_elem)
             max_16_not_end_A[m_elem_index] = list_of_pairs[m_elem_index][0] + list_of_pairs[m_elem_index][1] - m_elem
             deleted.append(m_elem)
