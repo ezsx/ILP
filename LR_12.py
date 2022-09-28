@@ -41,7 +41,15 @@ def input_file_name():
         return input_file_name()
 
 
-if __name__ == "__main__":
+def task12_var1(file_name):
+    return [print(i) for i in open(file_name, 'r').read().splitlines()[:10]]
+
+def task12_var3(file_name, file_name2):
+    return [print(i) for i in open(file_name, 'r').read().splitlines()],[print(i) for i in open(file_name2, 'r').read().splitlines()]
+def task12_var5(file_name):
+    return print(max([i for i in open(file_name, 'r').read().splitlines()],key=len))
+
+def task12_var(file_name):
     while True:
         f = input_file_name()
         if f[1] == False:
@@ -61,4 +69,38 @@ if __name__ == "__main__":
         print(f"Не коментированных функций: {not_comented_defs}")
         print(f"Имена коментированных функции: {comented_defs_names}")
         print(f"Имена НЕкоментированных функций: {not_comented_defs_names}")
-        f[0].close()
+    f[0].close()
+    pass
+
+def task12_var7(file_name):
+    from collections import Counter
+    return print(Counter([i for i in open(file_name, 'r').read().splitlines()]).most_common(1))
+
+def task12_var9():
+    src = list(map(str, input().split()))
+    print(src)
+    src1=[]
+    for i in src:
+        if i.isdigit():
+            src1.append(int(i))
+            continue
+        try:
+            if i == "отл":
+                src1.append(5)
+            if i == "хор":
+                src1.append(4)
+            if i == "удол":
+                src1.append(3)
+        except ValueError:
+            print("Неверный ввод")
+    print(src1)
+
+
+
+
+
+if __name__ == "__main__":
+    task12_var7("text.txt")
+    task12_var9()
+
+

@@ -185,7 +185,6 @@ def task11_var4():
 
     print(d) # сам список для наглядности
 
-
 if __name__ == "__main__":
     # task10_var1()
     # task10_var2()
@@ -198,5 +197,5 @@ if __name__ == "__main__":
     # task10_var8()
     # task10_var9()
     # task10_var10()
-    task11_var4()
+
     pass
