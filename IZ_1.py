@@ -19,5 +19,5 @@ def rez_in_line(file_name):
 
 
 if __name__ == "__main__":
-    print("Адекватное решение:", entry_16_not_end_A(get_pair_digs("4a.txt")))
-    print("Решение в строку:  ", rez_in_line("4a.txt"))
+    print("Адекватное решение:", entry_16_not_end_A(get_pair_digs("staff_files/4a.txt")))
+    print("Решение в строку:  ", rez_in_line("staff_files/4a.txt"))

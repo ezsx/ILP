@@ -100,7 +100,7 @@ def task12_var9():
 
 
 if __name__ == "__main__":
-    task12_var7("text.txt")
+    task12_var7("staff_files/text.txt")
     task12_var9()
 
 
