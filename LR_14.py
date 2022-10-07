@@ -418,7 +418,7 @@ def task4():
                             self.attempts -= 1
                             self.text_attempts.setText("Осталось попыток: " + str(self.attempts))
                     else:
-                        self.result.setText("Вы проиграли!")
+                        self.result.setText("Вы проиграли!\nверное слово:" +self.en_word)
                 except:
                     self.result.setText("Ошибка")
 
@@ -485,7 +485,7 @@ def task4():
 
     # test_task()
     # task__1()
-    # task__2()
+    task__2()
     # task__3()
 
 
