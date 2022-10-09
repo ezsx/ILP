@@ -5,11 +5,15 @@ class Polynomial:
         self.coefficient = coefficient
 
     def __str__(self):
-        # gvnocode
+        # for the start we get list with strings where we contain
+        # information about every term, each string looks like this:
+        # "±a*x^b" where a is coefficient[i] and b is degree-i
+        # we construct the certain string with the polynomial
+        # and print it in console
         if self.coefficient == "Error":
             print(self.coefficient)
             return ""
-        rez = self.build_Polynomial()
+        rez = self.build_Polynomial(True)
         for i in range(len(rez)):
             if i == 0:
                 print(rez[i], end='')
@@ -23,8 +27,23 @@ class Polynomial:
                 print(" + " + rez[i], end='')
         return ""
 
-    def build_Polynomial(self):
-        from termcolor import colored
+    def write_Poynomial_in_file(self, file_name, type_write):
+        rez = self.build_Polynomial(False)
+        with open(file_name, type_write, encoding="utf-8") as f:
+            for i in range(len(rez)):
+                if i == 0:
+                    f.write(rez[i])
+                    continue
+                if i == len(rez):
+                    continue
+
+                if rez[i][0] == '-':
+                    f.write(rez[i].replace("-", " - "))
+                else:
+                    f.write(" + " + rez[i])
+            f.write("\n")
+
+    def build_Polynomial(self, console):
         rez_arr = []
         i = 0
         for a in self.coefficient:
@@ -35,10 +54,18 @@ class Polynomial:
                 rez_arr.append(str(a))
                 continue
             text1 = f"{a}x^"
-            text2 = colored(f"{self.degree - i}", 'red')
+            # if we print in console we use termcolor
+            # to make the output more beautiful
+            # (i specialy use this library, and not use standart colors codes
+            # cuz it looks awful)
+            if console:
+                from termcolor import colored
+                text2 = colored(f"{self.degree - i}", 'red')
+            else:
+                text2 = f"{self.degree - i}"
             rez_arr += [text1 + text2]
             i += 1
-        return rez_arr
+        return rez_arr  # ['±a[0]*x^(b-0)', '±a[1]*x^(b-1)', ...]
 
     def __getitem__(self, x):
         rez = 0
@@ -103,3 +130,4 @@ if __name__ == '__main__':
     # count Polynomials
     print(f1_x)
     print(f1_x[2])
+    fg_x.write_Poynomial_in_file("rez.txt", "a")
