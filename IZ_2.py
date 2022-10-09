@@ -1,4 +1,4 @@
-class Polinom:
+class Polynomial:
 
     def __init__(self, degree, coefficient):
         self.degree = degree
@@ -9,7 +9,7 @@ class Polinom:
         if self.coefficient == "Error":
             print(self.coefficient)
             return ""
-        rez = self.build_polinom()
+        rez = self.build_Polynomial()
         for i in range(len(rez)):
             if i == 0:
                 print(rez[i], end='')
@@ -23,7 +23,7 @@ class Polinom:
                 print(" + " + rez[i], end='')
         return ""
 
-    def build_polinom(self):
+    def build_Polynomial(self):
         from termcolor import colored
         rez_arr = []
         i = 0
@@ -53,7 +53,7 @@ class Polinom:
             for i in range(len(other.coefficient)):
                 rez_arr[i + step_i] += other.coefficient[i]
 
-            return Polinom(self.degree, rez_arr)
+            return Polynomial(self.degree, rez_arr)
         else:
             return "Error"
 
@@ -64,7 +64,7 @@ class Polinom:
             for i in range(len(other.coefficient)):
                 rez_arr[i + step_i] -= other.coefficient[i]
 
-            return Polinom(self.degree, rez_arr)
+            return Polynomial(self.degree, rez_arr)
         else:
             return "Error"
 
@@ -73,33 +73,33 @@ class Polinom:
         for i in range(len(self.coefficient)):
             for j in range(len(other.coefficient)):
                 rez_arr[i + j] += self.coefficient[i] * other.coefficient[j]
-        return Polinom(self.degree + other.degree, rez_arr)
+        return Polynomial(self.degree + other.degree, rez_arr)
 
 
 if __name__ == '__main__':
-    # add polinoms
-    print("_add polinoms_")
-    f_x = Polinom(4, [3, 0, -7, 1, -3])
-    g_x = Polinom(3, [2, 5, 3, -2])
+    # add Polynomials
+    print("_add Polynomials_")
+    f_x = Polynomial(4, [3, 0, -7, 1, -3])
+    g_x = Polynomial(3, [2, 5, 3, -2])
     print(f_x)
     print(g_x)
     fg_x = f_x + g_x
     print(fg_x)
-    # multiply polinoms
-    print("_multiply polinoms_")
-    f1_x = Polinom(2, [2, -1, 1])
-    g1_x = Polinom(1, [3, -1])
+    # multiply Polynomials
+    print("_multiply Polynomials_")
+    f1_x = Polynomial(2, [2, -1, 1])
+    g1_x = Polynomial(1, [3, -1])
     print(f1_x)
     print(g1_x)
     fg1_x = f1_x * g1_x
     print(fg1_x)
-    print("_sub polinoms_")
-    # sub polinoms
+    print("_sub Polynomials_")
+    # sub Polynomials
     print(f1_x)
     print(g1_x)
     fg11_x = f1_x - g1_x
     print(fg11_x)
-    print("_count polinoms_")
-    # count polinoms
+    print("_count Polynomials_")
+    # count Polynomials
     print(f1_x)
     print(f1_x[2])
