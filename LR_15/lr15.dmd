@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="lr15" id="6999C48F-0710-B3B7-D0F9-8A2A3E2C7EFC" version="3.5">
+<createdBy>scdco</createdBy>
+<createdTime>2022-10-23 19:24:29 UTC</createdTime>
+<ownerDesignName>lr15</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>6999C48F-0710-B3B7-D0F9-8A2A3E2C7EFC</designId>
+</OSDM_Design>
