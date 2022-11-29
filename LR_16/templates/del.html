@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" >
+</head>
+<body>
+<!-- выберите таблицу -->
+<form action="/cgi-bin/del.py" method="post">
+    <select name="tableselect">
+        <option value="" selected="selected">Выберите</option>
+        <option value="1">Регионы</option>
+        <option value="2">Клиенты</option>
+        <option value="3">Заказы</option>
+        <option value="4">Товары</option>
+        <option value="5">Склады</option>
+    </select>
+    <input name="sql_del" typeof="sql_del" type="text"/>
+    <input name="sub" type="submit"/>
+    <details>
+        <summary>Предупреждение</summary>
+        <p>При удалении записи, все ссылающищиеся записи в других таблицах на данную запись так же будут уничтожены</p>
+        <details>
+            <summary>Пример</summary>
+            <p>Если вы удаляете запись из таблицы "Регионы", то все записи из таблицы "Клиенты" ссылающиеся на данную запись так же будут удалены</p>
+        </details>
+    </details>
+</form>
+</body>
+<script>
+    var tableselect = document.getElementsByName("tableselect");
+    var sql_del = document.getElementsByName("sql_del");
+    tableselect[0].onchange = function () {
+        if (tableselect[0].value == 1) {
+            sql_del[0].placeholder = "Введите id региона";
+        }
+        if (tableselect[0].value == 2) {
+            sql_del[0].placeholder = "Введите id клиента";
+        }
+        if (tableselect[0].value == 3) {
+            sql_del[0].placeholder = "Введите id заказа";
+        }
+        if (tableselect[0].value == 4) {
+            sql_del[0].placeholder = "Введите id товара";
+        }
+        if (tableselect[0].value == 5) {
+            sql_del[0].placeholder = "Введите id склада";
+        }
+    }
+</script>
+<style>
+    body {
+        background-color: #f0f0f0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        margin: 0 auto;
+        width: 800px;
+        padding: 1em;
+        border: 1px solid #CCC;
+        border-radius: 1em;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+    select {
+    /*    set to center*/
+        display: block;
+        margin: 0 auto;
+        width: 300px;
+        height: 30px;
+        border: 1px solid #CCC;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    input {
+        font: 1em sans-serif;
+        width: 400px;
+        /*set to center*/
+        display: block;
+        margin: 0 auto;
+        height: 2em;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #999;
+    }
+    input[typeof="sql_del"] {
+        background-color: #f0f0f0;
+        border: 1px solid #999;
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        width: 300px;
+       /*    set to center */
+        margin-left: 250px;
+    }
+    input[name="sub"] {
+        background-color: #f0f0f0;
+        border: 1px solid #999;
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        width: 300px;
+        /*    set to center */
+        margin-left: 250px;
+    }
+    input:focus {
+        border-color: #000;
+    }
+
+    .button {
+        padding-left: 150px;
+    }
+
+    button {
+        margin-left: .5em;
+    }
+    details {
+        margin-top: 1em;
+        text-align: center;
+    }
+</style>
+</html>
